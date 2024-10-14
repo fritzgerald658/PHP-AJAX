@@ -1,6 +1,7 @@
 <?php
 // $db = new Database();
 // $conn = $db->connect();
+include "Database.php";
 
 class UserData extends Database
 {

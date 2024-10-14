@@ -40,6 +40,18 @@ body {
   background-color: transparent;
 }
 
+#update-forms-container {
+  display: none;
+  background-color: white;
+  width: 50vw;
+  margin-top: 15rem;
+  border: 1px solid black;
+  position: absolute;
+  bottom: 100px;
+  left: 326px;
+  z-index: 1;
+}
+
 .forms-container {
   display: none;
   background-color: white;

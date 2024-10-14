@@ -1,6 +1,7 @@
 <?php
 
 include "Database.php";
+
 class UpdateUserData extends Database
 {
 
@@ -26,7 +27,15 @@ class UpdateUserData extends Database
     {
         $sql = "UPDATE user_registration SET first_name = ?, last_name = ?, email_address = ?, home_address = ?, age = ?, gender = ? 
             WHERE id = ?";
+
+        // Prepare the statement
         $stmt = parent::connect()->prepare($sql);
+
+        if ($stmt === false) {
+            return "Failed to prepare statement: " . htmlspecialchars($stmt->error);
+        }
+
+        // Bind parameters
         $stmt->bind_param(
             "ssssisi",
             $this->first_name,
@@ -38,9 +47,15 @@ class UpdateUserData extends Database
             $this->id
         );
 
-        $stmt->execute();
-        $stmt->close();
+        // Execute the statement
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true; // Success
+        } else {
+            return "Failed to execute statement: " . htmlspecialchars($stmt->error);
+        }
     }
+
 
     public function retainFormValues($id)
     {
